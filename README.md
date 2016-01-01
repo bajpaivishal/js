@@ -1,4 +1,4 @@
 # js
 important question
 
-Created by vishal bajpai
+Created by vishu bajpai
