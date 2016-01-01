@@ -3,11 +3,33 @@
 Math. round(-20.51)  // -21
 
 parseInt("20g") // 20
+
 parseInt("test20g") // NaN
 
 parseInt("r20g") == NaN // False
 
 isNaN(parseInt("r20g")) // True
+
+>>> var i = 1 + undefined; i;  // NaN
+
+>>> 1*undefined // NaN
+
+// null will treat as 0
+>>> var i = 1 + null; i; // 1
+
+>>> 1*null // 1
+
+20 + (20/0) // Infinity
+
+40 + (20/0) - "test"  // NaN
+
+20 + (20/0) == "Infinity" //true
+
+20 + (20/0) == Infinity //true
+
+20 + -(20/0) == Infinity //False
+
+20 + -(20/0) == "-Infinity" // True
 
 // Typeof Always Provede data Type in String Format.
 
