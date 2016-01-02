@@ -1,0 +1,134 @@
+http://dreamerslab.com/blog/en/javascript-callbacks/
+
+function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+var greeting = function(ln){
+  console.log('Welcome Mr. ' + ln);
+};
+
+fullName("Jackie", "Chan", greeting)
+
+
+*A reference to executable code, or a piece of executable code, that is passed as an argument to other code
+
+*When you pass a function A to another function B and B executes A, it's often said that A is a callback function. If A doesn't have a name, then you can say that it's an anonymous callback function.
+
+*Don’t block the way
+
+Traditionally functions work by taking input in the form of arguments and returning a value using a return statement (ideally a single return statement at the end of the function: one entry point and one exit point). This makes sense. Functions are essentially mappings between input and output.
+
+Javascript gives us an option to do things a bit differently. Rather than wait around for a function to finish by returning a value, we can use callbacks to do it asynchronously. This is useful for things that take a while to finish, like making an AJAX request, because we aren’t holding up the browser. We can keep on doing other things while waiting for the callback to be called. In fact, very often we are required (or, rather, strongly encouraged) to do things asynchronously in Javascript.
+
+
+
+
+//Asysc Example
+
+function do_a( callback ){
+  setTimeout( function(){
+    // simulate a time consuming function
+    console.log( '`do_a`: this takes longer than `do_b`' );
+ 
+    // if callback exist execute it
+    callback && callback();
+  }, 3000 );
+}
+ 
+function do_b(){
+  console.log( '`do_b`: now we can make sure `do_b` comes out after `do_a`' );
+}
+ 
+do_a( function(){
+  do_b();
+});
+
+
+Result
+
+`do_a`: this takes longer than `do_b`
+`do_b`: now we can make sure `do_b` comes out after `do_a`
+
+///////////////////////////////////////////////////
+/* Problem */
+function foo(address){
+    var returnvalue;    
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        returnvalue = results[0].geometry.location; 
+    })
+    return returnvalue; 
+}
+foo(); //still undefined
+
+/* Slovution */
+function foo(address, fn){
+  geocoder.geocode( { 'address': address}, function(results, status) {
+     fn(results[0].geometry.location); 
+  });
+}
+
+foo("address", function(location){
+  alert(location); // this is where you get the return value
+});
+
+/* Start Problem and Slovution In single code of Async callBack func */
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+console.log("heloooo");
+
+function foo(address,f){
+var geocoder= new google.maps.Geocoder();
+var lo;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    lo = results[0].geometry.location; 
+	f(lo);
+	return lo;
+  });
+ 
+}
+
+location123 = foo("address",function(l){ if(l) alert(l); });
+
+if(location123) alert(location123);
+ 
+console.log("Byeeee");
+</script>
+
+/* End Problem and Slovution In single code of Async callBack func */
+//////////////////////////////////////////////////
+
+01
+// define our function with the callback argument
+02
+function some_function(arg1, arg2, callback) {
+03
+    // this generates a random number between
+04
+    // arg1 and arg2
+05
+    var my_number = Math.ceil(Math.random() *
+06
+        (arg1 - arg2) + arg2);
+07
+    // then we're done, so we'll call the callback and
+08
+    // pass our result
+09
+    callback(my_number);
+10
+}
+11
+// call the function
+12
+some_function(5, 15, function(num) {
+13
+    // this anonymous function will run when the
+14
+    // callback is called
+15
+    console.log("callback called! " + num);
+16
+});
