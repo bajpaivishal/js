@@ -132,3 +132,67 @@ some_function(5, 15, function(num) {
     console.log("callback called! " + num);
 16
 });
+
+
+
+/////* CallBack Hell   */
+
+Callback Hell
+
+Callbacks themselves are not bad. But the prevalent misuse of callbacks in our industry has led to the notion of callback hell: code that nests callbacks so heavily as to be unreadable.
+Just as you would avoid nesting lots of if/else statements like this:
+if (condition) {
+  if (condition) {
+    if (condition) {
+      console.log('true of all the conditions')
+    }
+  }
+}
+You should avoid nesting lots of callbacks like this:
+var users = [];
+fetchUsers(function() {
+  renderUsersOnPage(function() {
+    fadeInUsers(function) {
+      loadUserPhotos(function() {
+         // you get the idea
+      });
+    });
+  });
+});
+There are several problems with the code above.
+The first is that heavily-nested code is difficult to read later on. It’s hard to follow flow control and difficult to isolate problem spots. The second reason is that the code above tightly couples one function to another. This makes it hard to reuse in other situations, hard to incrementally improve over time, and hard to test.
+So what else can we use?
+
+Enter: Promises
+
+
+
+
+
+/* Start */
+http://www.sitepoint.com/javascript-generators-preventing-callback-hell/
+/* End */
+
+/* Start CLOSURES */
+JavaScript variables can belong to the local or global scope.
+
+Private variables can be made possible with closures.
+
+<p>Counting with a local variable.</p>
+
+<button type="button" onclick="myFunction()">Count!</button>
+
+<p id="demo">0</p>
+
+<script>
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+
+function myFunction(){
+    document.getElementById("demo").innerHTML = add();
+}
+</script>
+/* End CLOSURES */
+
