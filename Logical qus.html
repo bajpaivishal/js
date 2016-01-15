@@ -1,5 +1,120 @@
 <script>
-
-
-
+// Non Repeating Char in String 
+console.log("heloooo");
+var str = "this is for teshting";
+for(var i=0;i<str.length;i++){
+var repeat =0;
+	for(var j=0;j<str.length;j++){
+		if(i != j && str[i] == str[j]){
+			repeat = 1
+			break;
+		}
+	}
+	if(!repeat) {repeat = str[i]; break;}
+}
+ 
+console.log("Non Repeating Char in String is : 	" +repeat + " \nByeeee");
 </script>
+//////////////////////////////////////////////
+
+
+
+<script>
+// Remove Duplicate Elements in Array
+console.log("heloooo");
+var arr = [12,1123,5,44,58,1123,96,44,75,745];
+var new_arr = [];
+for(var i=0;i<=arr.length;i++){
+var is_exist = 0;
+	for(var j=0;j<new_arr.length;j++){
+		if(arr[i] == new_arr[j]){
+			is_exist = 1;
+			break;
+		}
+	}
+	if(!is_exist)
+	new_arr.push(arr[i]);
+}
+console.log(new_arr + "\nByeeee");
+</script>
+<script>
+var duplicatesArray = ['mike','james','vishal','james','alex','vishal'];
+var uniqueArray = duplicatesArray.filter(function(elem, pos) {
+    return duplicatesArray.indexOf(elem) == pos;
+  }); 
+  console.log(uniqueArray);
+</script>
+//////////////////////////////////////////////////
+
+
+<script>
+// Make Matrix From an Array
+function listToMatrix(list, elementsPerSubArray) {
+    var matrix = [], i, k;
+
+    for (i = 0, k = -1; i < list.length; i++) {
+        if (i % elementsPerSubArray === 0) {
+            k++;
+            matrix[k] = [];
+        }
+
+        matrix[k].push(list[i]);
+    }
+
+    return matrix;
+}
+var matrix = listToMatrix([1, 2, 3, 4, 4, 5, 6, 7, 8, 9], 3);
+// result: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+console.info(matrix);
+</script>
+////////////////////////////////////////////////
+
+
+<script>
+// Input : ABBCDDDEFGGH  result : A2BC3DEF2GH
+console.log("heloooo");
+var f = "ABBCDDDEFGGH";
+var s = "";
+var	count = 1;
+for(var i=1;i<f.length+1;i++){
+	if(f.charAt(i-1) == f.charAt(i)){
+		count++;
+	}else{
+		if(count>1){
+			s = s + count+ f[i-1];
+		}else{
+			s += f[i-1];
+		}
+		count = 1;
+	}
+}
+console.log("Byeeee\n" +s);
+</script>
+
+/////////////////////////////////////////////////////
+
+<script>
+
+var my = (function(){
+	var first,is_first = false;
+	return {
+		sum:function(para){
+			is_first=!is_first;
+			if(is_first){
+				first = para;
+			}else{
+				return first + para;
+			}
+		}
+	}
+})();
+my.sum(2);
+my.sum(4);
+// 6
+my.sum(2);
+my.sum(5);
+//7
+//console.log("Byeeee\n" + t);
+</script>
+////////////////////////////////////////////////////
+
